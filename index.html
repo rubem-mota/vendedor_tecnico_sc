@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rubem Mota | Vendas Técnicas - Metalworking & Fluidos</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        mwDark: '#0f172a',    /* Slate 900 - Fundo Industrial */
+                        mwPrimary: '#0ea5e9', /* Sky 500 - Cor de Fluidos/Tecnologia */
+                        mwAccent: '#f97316',  /* Orange 500 - Agressividade Hunter */
+                        bgLight: '#f8fafc'
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                    },
+                    animation: {
+                        'blob': 'blob 7s infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        blob: {
+                            '0%': { transform: 'translate(0px, 0px) scale(1)' },
+                            '33%': { transform: 'translate(30px, -50px) scale(1.1)' },
+                            '66%': { transform: 'translate(-20px, 20px) scale(0.9)' },
+                            '100%': { transform: 'translate(0px, 0px) scale(1)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800;900&display=swap');
+        
+        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 10px; }
+        ::-webkit-scrollbar-track { background: #0f172a; }
+        ::-webkit-scrollbar-thumb { background: #0ea5e9; border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #f97316; }
+
+        /* Scroll Reveal Utility Classes */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease-out; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Glassmorphism */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .timeline-line::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #0ea5e9, #0f172a);
+        }
+    </style>
+</head>
+<body class="text-slate-800 antialiased selection:bg-mwPrimary selection:text-white">
+
+    <!-- NAVBAR -->
+    <nav class="fixed w-full z-50 transition-all duration-300 bg-mwDark/95 backdrop-blur-md border-b border-mwPrimary/20" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex-shrink-0 flex items-center gap-3 cursor-pointer" onclick="window.scrollTo(0,0)">
+                    <div class="w-10 h-10 bg-gradient-to-br from-mwPrimary to-mwAccent rounded-full flex items-center justify-center text-white font-bold text-xl shadow-lg border border-white/20">RM</div>
+                    <span class="font-bold text-white tracking-wide uppercase">Rubem Mota</span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#match" class="text-slate-300 hover:text-mwPrimary transition-colors text-sm font-semibold tracking-wide">O Match</a>
+                    <a href="#territorio" class="text-slate-300 hover:text-mwPrimary transition-colors text-sm font-semibold tracking-wide">Território SC</a>
+                    <a href="#expertise" class="text-slate-300 hover:text-mwPrimary transition-colors text-sm font-semibold tracking-wide">Casos de Sucesso</a>
+                    <a href="#plano" class="bg-mwPrimary/10 text-mwPrimary px-4 py-2 rounded-full border border-mwPrimary/30 hover:bg-mwPrimary hover:text-white transition-all text-sm font-bold shadow-[0_0_15px_rgba(14,165,233,0.3)]">Plano 90 Dias</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-mwDark pt-16">
+        <!-- Background Blobs -->
+        <div class="absolute top-0 -left-4 w-72 h-72 bg-mwPrimary rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob"></div>
+        <div class="absolute top-0 -right-4 w-72 h-72 bg-mwAccent rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-2000"></div>
+        <div class="absolute -bottom-8 left-20 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-blob animation-delay-4000"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-6 lg:px-8 text-center flex flex-col items-center">
+            
+            <div class="relative group cursor-pointer mb-8">
+                <div class="absolute -inset-1 bg-gradient-to-r from-mwPrimary to-mwAccent rounded-full blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <img src="foto_perfil.jpg" alt="Rubem Mota" onerror="this.src='https://ui-avatars.com/api/?name=Rubem+Mota&background=0ea5e9&color=fff&size=200'" class="relative w-48 h-48 rounded-full border-4 border-mwDark object-cover shadow-2xl transition-transform duration-500 group-hover:scale-105 bg-white">
+            </div>
+
+            <div class="inline-flex items-center gap-2 px-5 py-2 bg-mwPrimary/20 border border-mwPrimary/30 text-white text-xs md:text-sm font-bold uppercase tracking-widest rounded-full mb-6 backdrop-blur-sm animate-fade-in-up">
+                <i class="fa-solid fa-flask text-mwPrimary"></i> Especialista em Vendas Técnicas B2B
+            </div>
+            
+            <h1 class="text-5xl md:text-7xl font-black text-white mb-4 tracking-tight animate-fade-in-up" style="animation-delay: 0.1s;">Rubem <span class="text-transparent bg-clip-text bg-gradient-to-r from-mwPrimary to-mwAccent">Mota</span></h1>
+            <h2 class="text-xl md:text-3xl text-slate-300 font-light mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">Metalworking & Soluções Anticorrosivas</h2>
+            
+            <p class="text-slate-300 text-lg md:text-xl max-w-3xl leading-relaxed mb-10 text-center animate-fade-in-up" style="animation-delay: 0.3s;">
+                Mais de 20 anos unindo a agressividade da prospecção <strong>Hunter</strong> à gestão estratégica de contas <strong>Farmer</strong>. Expertise absoluta em vendas consultivas, validação técnica em campo e interface com as áreas de <strong>Engenharia, Manutenção, Laboratório e Compras</strong>.
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-4 mb-12 animate-fade-in-up" style="animation-delay: 0.4s;">
+                <span class="bg-white/10 px-6 py-3 rounded-lg flex items-center text-sm font-bold text-white border border-white/20 backdrop-blur-md shadow-lg">
+                    <i class="fa-solid fa-gears text-mwPrimary text-xl mr-3"></i> Foco Industrial
+                </span>
+                <span class="bg-white/10 px-6 py-3 rounded-lg flex items-center text-sm font-bold text-white border border-white/20 backdrop-blur-md shadow-lg">
+                    <i class="fa-solid fa-microscope text-mwAccent text-xl mr-3"></i> Validação em Campo
+                </span>
+            </div>
+
+            <!-- Social Links -->
+            <div class="flex flex-wrap justify-center items-center gap-6 text-2xl animate-fade-in-up" style="animation-delay: 0.5s;">
+                <a href="https://wa.me/5553999946949" target="_blank" class="text-slate-400 hover:text-mwPrimary transition-transform hover:scale-110"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="mailto:rubem.mota@icloud.com" class="text-slate-400 hover:text-mwPrimary transition-transform hover:scale-110"><i class="fa-solid fa-envelope"></i></a>
+                <a href="https://linkedin.com/in/rubem-mota" target="_blank" class="text-slate-400 hover:text-mwPrimary transition-transform hover:scale-110"><i class="fa-brands fa-linkedin"></i></a>
+                <span class="text-slate-400 text-sm flex items-center border-l border-slate-600 pl-6 ml-2">
+                    <i class="fa-solid fa-location-dot text-mwPrimary mr-2"></i> Base: Joinville/SC
+                </span>
+            </div>
+            
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 animate-bounce text-slate-400">
+                <i class="fa-solid fa-chevron-down text-2xl"></i>
+            </div>
+        </div>
+    </section>
+
+    <!-- O MATCH PERFEITO -->
+    <section id="match" class="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <h2 class="text-4xl md:text-5xl font-black text-mwDark mb-4 uppercase tracking-tight">O <span class="text-mwPrimary">Match</span> Técnico</h2>
+            <p class="text-slate-600 text-xl max-w-3xl mx-auto">Alinhamento cirúrgico entre as necessidades da vaga e meu histórico de alta performance.</p>
+        </div>
+
+        <div class="flex flex-col lg:flex-row items-center gap-12">
+            <!-- Radar Chart -->
+            <div class="w-full lg:w-1/2 flex items-center justify-center reveal">
+                <div class="glass-card rounded-2xl p-6 shadow-xl w-full h-[450px] relative hover:shadow-2xl transition-shadow duration-300 border-t-4 border-mwPrimary">
+                    <canvas id="skillsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Pontos -->
+            <div class="w-full lg:w-1/2 flex flex-col gap-6">
+                <div class="flex items-start bg-white p-6 rounded-2xl shadow-md border-l-4 border-mwPrimary hover:translate-x-2 transition-transform duration-300 reveal cursor-default group">
+                    <div class="bg-sky-50 p-4 rounded-full mr-5 text-mwPrimary group-hover:bg-mwPrimary group-hover:text-white transition-colors duration-300 shrink-0">
+                        <i class="fa-solid fa-bullseye text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-mwDark mb-2">Perfil Hunter e Farmer</h3>
+                        <p class="text-slate-600 leading-relaxed">Forte capacidade de <strong>abertura de mercado (prospecção ativa)</strong> aliada à excelência na gestão e rentabilização de grandes contas industriais. Acostumado a metas agressivas.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-white p-6 rounded-2xl shadow-md border-l-4 border-mwAccent hover:translate-x-2 transition-transform duration-300 reveal cursor-default group" style="transition-delay: 100ms;">
+                    <div class="bg-orange-50 p-4 rounded-full mr-5 text-mwAccent group-hover:bg-mwAccent group-hover:text-white transition-colors duration-300 shrink-0">
+                        <i class="fa-solid fa-vial-circle-check text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-mwDark mb-2">Validação Técnica Multidisciplinar</h3>
+                        <p class="text-slate-600 leading-relaxed">Expertise em conduzir apresentações e <strong>testes em campo</strong>, traduzindo soluções complexas (como fluidos de usinagem) para a Engenharia, Manutenção e Laboratório.</p>
+                    </div>
+                </div>
+
+                <div class="flex items-start bg-white p-6 rounded-2xl shadow-md border-l-4 border-slate-800 hover:translate-x-2 transition-transform duration-300 reveal cursor-default group" style="transition-delay: 200ms;">
+                    <div class="bg-slate-100 p-4 rounded-full mr-5 text-slate-800 group-hover:bg-slate-800 group-hover:text-white transition-colors duration-300 shrink-0">
+                        <i class="fa-solid fa-handshake-angle text-2xl"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-xl text-mwDark mb-2">Negociação Consultiva (B2B)</h3>
+                        <p class="text-slate-600 leading-relaxed">Domínio da metodologia <strong>SPIN Selling</strong>. Capacidade de justificar o TCO (Total Cost of Ownership) frente ao departamento de Compras/Suprimentos para garantir o fechamento.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- EXPANSÃO NACIONAL -->
+    <section id="territorio" class="py-24 bg-mwDark text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black mb-4 uppercase tracking-tight">Atuação em <span class="text-mwPrimary">Santa Catarina</span></h2>
+                <p class="text-slate-300 text-xl max-w-3xl mx-auto">Logística estratégica para domínio da malha industrial e atingimento de metas.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
+                <!-- Região 1 -->
+                <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 hover:-translate-y-3 transition-transform duration-300 reveal group">
+                    <div class="text-5xl text-mwPrimary mb-6 group-hover:scale-110 transition-transform origin-left"><i class="fa-solid fa-map-location-dot"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Mobilidade Total (SC)</h3>
+                    <p class="text-slate-400 leading-relaxed">Joinville/SC (com <strong>disponibilidade total e imediata para viagens</strong> ou para cobrir todo o estado de SC.</p>
+                </div>
+                
+                <!-- Região 2 -->
+                <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 hover:-translate-y-3 transition-transform duration-300 reveal group" style="transition-delay: 100ms;">
+                    <div class="text-5xl text-mwPrimary mb-6 group-hover:scale-110 transition-transform origin-left"><i class="fa-solid fa-industry"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">DNA Industrial</h3>
+                    <p class="text-slate-400 leading-relaxed">Familiaridade com o ambiente de chão de fábrica, usinagem e processos de manufatura. Facilidade de diálogo desde o operador da máquina até o gestor da planta.</p>
+                </div>
+
+                <!-- Região 3 -->
+                <div class="bg-white/5 border border-white/10 backdrop-blur-sm rounded-2xl p-8 hover:-translate-y-3 transition-transform duration-300 reveal group" style="transition-delay: 200ms;">
+                    <div class="text-5xl text-mwPrimary mb-6 group-hover:scale-110 transition-transform origin-left"><i class="fa-solid fa-car-side"></i></div>
+                    <h3 class="text-2xl font-bold mb-3">Rotina de Campo</h3>
+                    <p class="text-slate-400 leading-relaxed">Acostumado a rotinas que exigem alta quilometragem, resiliência e planejamento eficiente de rotas para maximizar o tempo de frente a frente com o cliente.</p>
+                </div>
+            </div>
+
+            <!-- Stats Bar -->
+            <div class="bg-gradient-to-r from-mwDark via-slate-800 to-mwDark border border-mwPrimary/30 rounded-3xl p-8 md:p-12 shadow-[0_0_30px_rgba(14,165,233,0.15)] reveal relative overflow-hidden flex flex-col md:flex-row justify-around items-center gap-8">
+                <div class="text-center relative z-10">
+                    <div class="text-5xl md:text-6xl font-black text-white mb-2 shadow-sm">+20</div>
+                    <div class="text-sm uppercase tracking-widest text-mwPrimary font-bold">Anos em Vendas B2B</div>
+                </div>
+                <div class="text-center relative z-10">
+                    <div class="text-5xl md:text-6xl font-black text-white mb-2 shadow-sm">+33%</div>
+                    <div class="text-sm uppercase tracking-widest text-mwPrimary font-bold">Aumento de Faturamento</div>
+                </div>
+                <div class="text-center relative z-10">
+                    <div class="text-5xl md:text-6xl font-black text-white mb-2 shadow-sm">SPIN</div>
+                    <div class="text-sm uppercase tracking-widest text-mwPrimary font-bold">Selling Certificado</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CASES CORE BUSINESS -->
+    <section id="expertise" class="py-24 px-6 lg:px-8 max-w-7xl mx-auto">
+        <div class="text-center mb-16 reveal">
+            <div class="inline-flex items-center gap-2 px-4 py-2 bg-mwAccent/10 text-mwAccent font-bold rounded-full mb-4">
+                <i class="fa-solid fa-chart-pie"></i> Histórico Validado
+            </div>
+            <h2 class="text-4xl md:text-5xl font-black text-mwDark mb-4 uppercase tracking-tight">Experiência <span class="text-mwPrimary">Aplicada</span></h2>
+            <p class="text-slate-600 text-xl max-w-3xl mx-auto">Resultados que comprovam minha capacidade de lidar com vendas técnicas e ciclos longos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+            <!-- Case 1 -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-t-8 border-mwDark hover:shadow-2xl transition-all duration-300 reveal group relative overflow-hidden">
+                <div class="absolute -right-4 -bottom-4 opacity-5 text-9xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-industry"></i></div>
+                <div class="flex justify-between items-start mb-6 relative z-10">
+                    <div>
+                        <h3 class="text-3xl font-black text-mwDark leading-tight mb-2">CEBRACE</h3>
+                        <p class="text-slate-500 font-bold text-sm"><i class="fa-regular fa-calendar mr-2"></i> Jan/2024 – Fev/2025 | Consultor Sênior</p>
+                    </div>
+                </div>
+                
+                <p class="text-slate-700 leading-relaxed mb-8 relative z-10">Atuação B2B consultiva fornecendo insumos industriais complexos. Interface direta com processadores, Engenharia e Manutenção. Negociação de alto volume com decisores de compras focados em redução de custos operacionais.</p>
+
+                <div class="space-y-4 relative z-10">
+                    <div class="bg-slate-50 p-4 rounded-xl border border-slate-200">
+                        <h5 class="font-bold text-mwDark mb-1 flex items-center gap-2"><i class="fa-solid fa-arrow-trend-up text-mwPrimary"></i> Farmer: Expansão de Receita</h5>
+                        <p class="text-sm text-slate-600">Elevação do faturamento médio mensal em 33%, escalando de R$ 6 Milhões para R$ 8 Milhões gerando valor técnico na aplicação dos produtos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Case 2 -->
+            <div class="bg-white rounded-3xl p-8 md:p-10 shadow-xl border-t-8 border-mwPrimary hover:shadow-2xl transition-all duration-300 reveal group relative overflow-hidden" style="transition-delay: 150ms;">
+                <div class="absolute -right-4 -bottom-4 opacity-5 text-9xl group-hover:scale-110 transition-transform"><i class="fa-solid fa-microscope"></i></div>
+                <div class="flex justify-between items-start mb-6 relative z-10">
+                    <div>
+                        <h3 class="text-3xl font-black text-mwDark leading-tight mb-2">ZEISS GROUP</h3>
+                        <p class="text-slate-500 font-bold text-sm"><i class="fa-regular fa-calendar mr-2"></i> Jan/2022 – Jan/2024 | Senior BDR</p>
+                    </div>
+                </div>
+                
+                <p class="text-slate-700 leading-relaxed mb-8 relative z-10">Propaganda técnica e geração de demanda para portfólios de alta tecnologia. O trabalho exigia validação constante em campo, testes práticos e treinamentos técnicos para especialistas.</p>
+                
+                <div class="bg-gradient-to-br from-mwPrimary to-blue-700 text-white p-6 rounded-xl shadow-lg mt-auto h-full max-h-48 flex flex-col justify-center relative z-10">
+                    <div class="flex items-center gap-4 mb-3">
+                        <div class="p-3 bg-white/10 rounded-full"><i class="fa-solid fa-flag-checkered text-2xl text-white"></i></div>
+                        <h5 class="font-bold text-lg leading-tight">Hunter: Recuperação Expressa</h5>
+                    </div>
+                    <p class="text-sm text-slate-100">Recuperação do market share regional em apenas 2 meses de prospecção pesada, superando a meta anual em 20% e quebrando o recorde histórico de faturamento (R$ 1.8M/mês).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FORMAÇÃO E ANALYTICS -->
+    <section class="py-24 bg-slate-50 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-mwDark mb-4 uppercase tracking-tight">Formação & <span class="text-mwAccent">Expertise</span></h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                <!-- Box 1 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-mwDark hover:-translate-y-2 transition-transform reveal">
+                    <i class="fa-solid fa-graduation-cap text-4xl text-mwDark mb-4"></i>
+                    <h4 class="font-bold text-xl text-mwDark mb-2">Administração</h4>
+                    <p class="text-sm text-mwPrimary font-bold mb-3">Formação Superior Completa</p>
+                    <p class="text-slate-600">Base acadêmica sólida para gestão de contas, entendimento de custos industriais e planejamento estratégico comercial. (Requisito da vaga).</p>
+                </div>
+
+                <!-- Box 2 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-mwPrimary hover:-translate-y-2 transition-transform reveal" style="transition-delay: 100ms;">
+                    <i class="fa-solid fa-chart-simple text-4xl text-mwPrimary mb-4"></i>
+                    <h4 class="font-bold text-xl text-mwDark mb-2">Ciência de Dados</h4>
+                    <p class="text-sm text-slate-500 font-bold mb-3">Ensino Superior em Andamento</p>
+                    <p class="text-slate-600">Capacidade analítica aprimorada para leitura de dashboards, previsão de consumo de fluidos dos clientes e análise comportamental de compras.</p>
+                </div>
+                
+                <!-- Box 3 -->
+                <div class="bg-white p-8 rounded-2xl shadow-md border-t-4 border-mwAccent hover:-translate-y-2 transition-transform reveal" style="transition-delay: 200ms;">
+                    <i class="fa-solid fa-comments-dollar text-4xl text-mwAccent mb-4"></i>
+                    <h4 class="font-bold text-xl text-mwDark mb-2">SPIN Selling & CRM</h4>
+                    <p class="text-sm text-mwAccent font-bold mb-3">Especialização em Vendas B2B</p>
+                    <p class="text-slate-600">Certificado em SPIN Selling (Miller Heiman Group) para vendas complexas. Domínio absoluto de CRM (Salesforce) e funil de vendas.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PLANO DE 90 DIAS -->
+    <section id="plano" class="py-24 bg-mwDark relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-b from-transparent to-black/40"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-4 uppercase tracking-tight">Plano Tático <span class="text-mwPrimary">90 Dias</span></h2>
+                <p class="text-slate-300 text-xl max-w-3xl mx-auto">Como vou gerar tração imediata na venda de Fluidos e Soluções Anticorrosivas em SC.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Fase 1 -->
+                <div class="glass-card bg-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300 reveal group relative overflow-hidden border-t-4 border-slate-400">
+                    <div class="absolute -right-4 -top-4 text-8xl font-black text-white/5 group-hover:text-white/10 transition-colors">01</div>
+                    <div class="inline-block bg-slate-500 text-white text-xs font-bold px-3 py-1 rounded-full mb-4">DIAS 01 - 30: IMERSÃO</div>
+                    <h3 class="font-bold text-2xl text-white mb-4">Produto & Mapeamento</h3>
+                    <ul class="text-slate-300 space-y-3">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Imersão no portfólio de fluidos de usinagem e anticorrosivos da empresa.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Mapeamento da base de indústrias no raio de 200km de Joinville.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Alinhamento com a equipe de Laboratório e Engenharia interna.</li>
+                    </ul>
+                </div>
+
+                <!-- Fase 2 -->
+                <div class="glass-card bg-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300 reveal group relative overflow-hidden border-t-4 border-mwPrimary" style="transition-delay: 150ms;">
+                    <div class="absolute -right-4 -top-4 text-8xl font-black text-white/5 group-hover:text-mwPrimary/10 transition-colors">02</div>
+                    <div class="inline-block bg-mwPrimary text-white text-xs font-bold px-3 py-1 rounded-full mb-4">DIAS 31 - 60: ATAQUE</div>
+                    <h3 class="font-bold text-2xl text-white mb-4">Ação Hunter & Testes</h3>
+                    <ul class="text-slate-300 space-y-3">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Prospecção agressiva em campo focada nos tomadores de decisão.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Início de apresentações técnicas e solicitação de testes práticos nas máquinas dos clientes.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Qualificação de dores operacionais (SPIN Selling).</li>
+                    </ul>
+                </div>
+
+                <!-- Fase 3 -->
+                <div class="glass-card bg-white/10 rounded-3xl p-8 hover:-translate-y-2 transition-transform duration-300 reveal group relative overflow-hidden border-t-4 border-mwAccent" style="transition-delay: 300ms;">
+                    <div class="absolute -right-4 -top-4 text-8xl font-black text-white/5 group-hover:text-mwAccent/10 transition-colors">03</div>
+                    <div class="inline-block bg-mwAccent text-white text-xs font-bold px-3 py-1 rounded-full mb-4">DIAS 61 - 90: CONVERSÃO</div>
+                    <h3 class="font-bold text-2xl text-white mb-4">Fechamento & Farming</h3>
+                    <ul class="text-slate-300 space-y-3">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Validação final dos testes junto à Manutenção e Laboratório do cliente.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Negociação de TCO e fechamento de contratos de fornecimento contínuo.</li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-caret-right text-mwPrimary mt-1"></i> Estabelecimento da rotina "Farmer" para garantir recompra e up-sell.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER / CTA -->
+    <footer class="bg-slate-900 border-t border-slate-800 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 text-center reveal">
+            <h2 class="text-3xl md:text-5xl font-black text-white mb-8">Pronto para ser o <span class="text-mwPrimary">Vendedor Técnico</span> que a sua operação precisa em SC.</h2>
+            
+            <div class="flex flex-wrap justify-center gap-6 mb-12">
+                <a href="https://wa.me/5553999946949" target="_blank" class="bg-green-600 hover:bg-green-500 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-green-500/50 flex items-center gap-3">
+                    <i class="fa-brands fa-whatsapp text-2xl"></i> Contactar (48) 99125-4883
+                </a>
+                <a href="https://linkedin.com/in/rubem-mota" target="_blank" class="bg-[#0077b5] hover:bg-[#006097] text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-[#0077b5]/50 flex items-center gap-3">
+                    <i class="fa-brands fa-linkedin text-2xl"></i> Conectar no LinkedIn
+                </a>
+            </div>
+
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 text-slate-400 font-semibold mb-12">
+                <span class="flex items-center gap-2"><i class="fa-brands fa-whatsapp text-mwPrimary"></i> Alt: (53) 99994-6949</span>
+                <span class="hidden md:inline">|</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-envelope text-mwPrimary"></i> rubem.mota@icloud.com</span>
+                <span class="hidden md:inline">|</span>
+                <span class="flex items-center gap-2"><i class="fa-solid fa-location-dot text-mwPrimary"></i>  Joinville/SC</span>
+            </div>
+
+            <p class="text-slate-600 text-sm">© 2026 Rubem Moreira Mota. Currículo Interativo & Portfólio Profissional.</p>
+        </div>
+    </footer>
+
+    <!-- Scripts de Interatividade -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // 1. Configuração do Gráfico de Radar (Focado na Vaga)
+            const ctx = document.getElementById('skillsChart').getContext('2d');
+            const data = {
+                labels: [
+                    'Prospecção Hunter', 
+                    'Testes/Validação em Campo', 
+                    'Gestão Farmer', 
+                    'Interface Eng./Manutenção', 
+                    'Negociação B2B Consultiva', 
+                    'Rotina 100% Mobile (SC)'
+                ],
+                datasets: [{
+                    label: 'Match com a Vaga (%)',
+                    data: [100, 90, 100, 95, 100, 100],
+                    backgroundColor: 'rgba(14, 165, 233, 0.25)', /* mwPrimary com opacidade */
+                    borderColor: '#0ea5e9',
+                    pointBackgroundColor: '#0f172a', /* mwDark */
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#f97316', /* mwAccent */
+                    pointHoverBorderColor: '#fff',
+                    pointRadius: 5,
+                    pointHoverRadius: 7,
+                    borderWidth: 2,
+                }]
+            };
+
+            new Chart(ctx, {
+                type: 'radar',
+                data: data,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    animation: {
+                        duration: 2000,
+                        easing: 'easeOutQuart'
+                    },
+                    scales: {
+                        r: {
+                            angleLines: { color: 'rgba(0,0,0,0.1)' },
+                            grid: { color: 'rgba(0,0,0,0.1)' },
+                            pointLabels: {
+                                font: { size: window.innerWidth < 768 ? 10 : 12, family: 'Inter', weight: 'bold' },
+                                color: '#0f172a'
+                            },
+                            ticks: { display: false, min: 40, max: 100 }
+                        }
+                    },
+                    plugins: { 
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: '#0f172a',
+                            titleFont: { family: 'Inter', size: 13 },
+                            bodyFont: { family: 'Inter', size: 14, weight: 'bold' },
+                            padding: 12,
+                            displayColors: false,
+                            callbacks: {
+                                label: function(context) { return context.raw + '% de Domínio Estratégico'; }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // 2. Lógica de Scroll Reveal
+            const revealElements = document.querySelectorAll('.reveal');
+            
+            const revealOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) return;
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target); 
+                });
+            }, revealOptions);
+
+            revealElements.forEach(el => revealOnScroll.observe(el));
+
+            // 3. Efeito Navbar
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    navbar.classList.add('shadow-lg', 'bg-mwDark/95');
+                    navbar.classList.remove('bg-transparent', 'border-transparent');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
